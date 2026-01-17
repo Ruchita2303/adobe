@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Explore World Travels</title>
+
+    <!-- ================= ADOBE DIGITAL DATA ================= -->
+    <script>
+        window.digitalData = {
+            page: {
+                pageInfo: {
+                    pageName: "Home | Explore World Travels",
+                    destinationURL: window.location.href,
+                    referrerURL: document.referrer
+                },
+                attributes: { // Initialize attributes for scroll/time
+                    scrollDepth: 0,
+                    timeOnPage: 0
+                }
+            },
+
+            booking: {
+                bookingInfo: {
+                    destination: "Maldives",
+                    travelType: "International",
+                    startDate: "2026-02-10",
+                    endDate: "2026-02-15",
+                    travellers: 2,
+                    pricePerPerson: 75000,
+                    totalPrice: 150000,
+                    currency: "INR",
+                    bookingStatus: "initiated"
+                }
+            },
+
+            user: [{
+                profile: [{
+                    loggedIn: false
+                }]
+            }],
+
+            events: []
+        };
+    </script>
+
+    <!-- ================= ADOBE LAUNCH ================= -->
+    <script src="https://assets.adobedtm.com/b5cbd1a1220e/ea6e233f02d3/launch-2a4bf74510f3.min.js" async></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial
+        }
+        
+        body {
+            margin: 0;
+            background: #f4f7fb
+        }
+        /* NAVBAR */
+        
+        nav {
+            background: #0b5ed7;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10
+        }
+        
+        nav h3 {
+            font-size: 30px;
+            margin: 0
+        }
+        
+        nav a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none
+        }
+        /* HERO */
+        
+        .hero {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url("https://images.unsplash.com/photo-1501785888041-af3ef285b470") center/cover;
+            color: white;
+            padding: 120px 20px;
+            text-align: center
+        }
+        
+        .hero h1 {
+            font-size: 44px
+        }
+        /* SECTIONS */
+        
+        section {
+            padding: 50px;
+            text-align: center
+        }
+        /* PACKAGES */
+        
+        #packages {
+            position: relative;
+            z-index: 2
+        }
+        
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+        
+        .card {
+            background: #fff;
+            width: 260px;
+            margin: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .2)
+        }
+        
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover
+        }
+        
+        .price {
+            color: #0b5ed7;
+            font-weight: bold
+        }
+        
+        button {
+            background: #0b5ed7;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer
+        }
+        /* MODAL */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            z-index: 20
+        }
+        
+        .modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 380px;
+            margin: 80px auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left
+        }
+        
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px
+        }
+        /* CONTACT FORM */
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0
+        }
+        
+        textarea {
+            height: 120px;
+            resize: vertical
+        }
+        
+        #contactSuccess {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold
+        }
+        /* RECEIPT */
+        
+        #receipt {
+            display: none;
+            background: #fff;
+            padding: 30px;
+            width: 360px;
+            margin: 30px auto;
+            border: 1px solid #ccc
+        }
+        
+        @media print {
+            body * {
+                visibility: hidden
+            }
+            #receipt,
+            #receipt * {
+                visibility: visible
+            }
+            #receipt {
+                position: absolute;
+                left: 0;
+                top: 0
+            }
+        }
+        /* FOOTER */
+        
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 15px
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <h3>🌍 Explore World Travels</h3>
+        <div>
+            <a href="#packages">Packages</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Your Journey Starts Here</h1>
+    </div>
+
+    <!-- PACKAGES -->
+    <section id="packages">
+        <h2>Popular Packages</h2>
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+                <h3>Maldives</h3>
+                <p class="price">₹75,000 / person</p>
+                <button onclick="openBooking('Maldives',75000)">Book</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34">
+                <h3>Paris</h3>
+                <p class="price">₹1,20,000 / person</p>
+                <button onclick="openBooking('Paris',120000)">Book</button>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
+                <h3>Switzerland</h3>
+                <p class="price">₹1,50,000 / person</p>
+                <button onclick="openBooking('Switzerland',150000)">Book</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BOOKING MODAL -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <h3>Book Your Trip</h3>
+
+            <form onsubmit="confirmBooking(event)">
+                <input id="place" readonly>
+
+                <label>No. of Travellers</label>
+                <input type="number" id="travellers" min="1" value="1" oninput="generateTravellerInputs()">
+
+                <div id="travellerInputs"></div>
+
+                <p id="amount"><b>Total:</b> ₹0</p>
+                <button type="submit">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- RECEIPT -->
+    <div id="receipt">
+        <h2>Explore World Travels</h2>
+        <hr>
+        <p><b>Booking ID:</b> <span id="r_id"></span></p>
+        <p><b>Destination:</b> <span id="r_place"></span></p>
+        <p><b>Traveller Names:</b></p>
+        <ul id="r_names"></ul>
+        <p><b>Total Amount:</b> ₹<span id="r_amount"></span></p>
+        <button onclick="window.print()">Download Receipt</button>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form onsubmit="submitContact(event)">
+            <input placeholder="Name" required>
+            <input placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+        <p id="contactSuccess" style="display:none;">
+            ✔ Your request is submitted. Our team will call you shortly.
+        </p>
+    </section>
+
+    <footer>© 2026 Explore World Travels</footer>
+
+    <script>
+        let basePrice = 0;
+        let startTime = Date.now();
+
+        /* BOOKING */
+        function openBooking(placeName, price) {
+            document.getElementById("bookingModal").style.display = "block";
+            document.getElementById("place").value = placeName;
+            basePrice = price;
+            document.getElementById("travellers").value = 1;
+            generateTravellerInputs();
+
+            digitalData.booking.bookingInfo = {
+                destination: placeName,
+                travelType: "International",
+                startDate: "2026-02-10",
+                endDate: "2026-02-15",
+                travellers: 1,
+                pricePerPerson: price,
+                totalPrice: price,
+                currency: "INR",
+                bookingStatus: "initiated"
+            };
+
+            digitalData.events.push({
+                event: "booking_start",
+                destination: placeName,
+                pricePerPerson: price
+            });
+        }
+
+        /* TRAVELLER INPUTS */
+        function generateTravellerInputs() {
+            let count = document.getElementById("travellers").value;
+            let container = document.getElementById("travellerInputs");
+            container.innerHTML = "";
+            for (let i = 1; i <= count; i++) {
+                container.innerHTML += `<input required placeholder="Traveller ${i} Name">`;
+            }
+            document.getElementById("amount").innerHTML = "<b>Total:</b> ₹" + (count * basePrice);
+
+            // Update booking info dynamically
+            digitalData.booking.bookingInfo.travellers = count;
+            digitalData.booking.bookingInfo.totalPrice = count * basePrice;
+        }
+
+        /* CONFIRM BOOKING */
+        function confirmBooking(e) {
+            e.preventDefault();
+            let names = [...document.getElementById("travellerInputs").querySelectorAll("input")].map(i => i.value);
+            let total = document.getElementById("travellers").value * basePrice;
+            let id = "EWT" + Date.now();
+
+            document.getElementById("bookingModal").style.display = "none";
+            document.getElementById("receipt").style.display = "block";
+
+            document.getElementById("r_id").innerText = id;
+            document.getElementById("r_place").innerText = document.getElementById("place").value;
+            document.getElementById("r_amount").innerText = total;
+            document.getElementById("r_names").innerHTML = names.map(n => `<li>${n}</li>`).join("");
+
+            digitalData.booking.bookingInfo.bookingStatus = "confirmed";
+            digitalData.booking.bookingInfo.bookingId = id;
+
+            digitalData.events.push({
+                event: "booking_complete",
+                bookingId: id,
+                totalPrice: total
+            });
+        }
+
+        /* CONTACT FORM */
+        function submitContact(e) {
+            e.preventDefault();
+            document.getElementById("contactSuccess").style.display = "block";
+            digitalData.page.attributes.contactFormSubmitted = true;
+            digitalData.events.push({
+                event: "contact_form_submitted"
+            });
+            e.target.reset();
+        }
+
+        /* ================= SCROLL & TIME-ON-PAGE TRACKING ================= */
+        window.addEventListener("scroll", () => {
+            let scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            digitalData.page.attributes.scrollDepth = Math.round(scrollPercent);
+        });
+
+        window.addEventListener("beforeunload", () => {
+            digitalData.page.attributes.timeOnPage = Math.round((Date.now() - startTime) / 1000);
+        });
+    </script>
+
+</body>
+
+</html>
