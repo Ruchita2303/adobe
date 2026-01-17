@@ -393,6 +393,7 @@
             digitalData.events.push({
                 event: "contact_form_submitted"
             });
+             window.dispatchEvent(new CustomEvent('contact_form_submitted'));
             e.target.reset();
         }
 
@@ -411,4 +412,5 @@
 
 
 </html>
+
 
